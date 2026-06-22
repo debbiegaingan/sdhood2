@@ -167,13 +167,113 @@ header p {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    header {
+        padding: 30px 0;
+        margin-bottom: 25px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    .settings-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
     .music-player {
         bottom: 15px;
         right: 15px;
         left: 15px;
     }
+
+    .music-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .music-select {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
     .volume-control {
         width: 100%;
+    }
+
+    .filter-controls {
+        gap: 8px;
+        padding: 10px 12px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .accounts-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .account-image {
+        height: 180px;
+    }
+
+    .admin-buttons {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        padding: 25px;
+        margin: 10% auto;
+        width: 95%;
+    }
+
+    .modal-content h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .add-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+
+    .lightbox-nav {
+        font-size: 28px;
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+    }
+
+    .lightbox-prev {
+        left: 15px;
+    }
+
+    .lightbox-next {
+        right: 15px;
+    }
+
+    .lightbox-close {
+        font-size: 32px;
+        top: 15px;
+        right: 20px;
     }
 }
 
@@ -848,32 +948,4 @@ header p {
     padding: 10px 24px;
     border-radius: 25px;
     border: 1px solid rgba(88, 101, 242, 0.6);
-}
-
-@media (max-width: 768px) {
-    .accounts-grid {
-        grid-template-columns: 1fr;
-    }
-    header h1 {
-        font-size: 1.8rem;
-    }
-    .header-content {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    .lightbox-nav {
-        font-size: 28px;
-        width: 55px;
-        height: 55px;
-        padding: 15px;
-    }
-    .lightbox-close {
-        font-size: 32px;
-        top: 18px;
-        right: 24px;
-    }
-    .admin-buttons {
-        flex-direction: column;
-    }
 }
