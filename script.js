@@ -25,13 +25,26 @@ const DEFAULT_PASSWORD = 'James0917928033!';
 
 // Load accounts from Firebase and set up realtime listener
 function loadAccounts() {
+    console.log("Loading accounts from Firebase...");
     database.ref('accounts').on('value', (snapshot) => {
         const data = snapshot.val();
+        console.log("Firebase data received:", data);
         if (data) {
-            accounts = Object.values(data);
+            accounts = Object.values(data).map(account => {
+                // Ensure all required fields exist with defaults
+                return {
+                    ...account,
+                    status: account.status || 'AVAILABLE',
+                    category: account.category || 'account',
+                    price: Number(account.price), // Make sure price is a number
+                    features: account.features || [],
+                    images: account.images || []
+                };
+            });
         } else {
             accounts = [];
         }
+        console.log("Accounts loaded:", accounts);
         renderAccounts();
     });
 }
