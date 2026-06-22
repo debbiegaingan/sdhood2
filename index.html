@@ -3,48 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Account Marketplace</title>
+    <title>SD HOOD</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div>
-                <h1>JAMES ROBLOX SHOP</h1>
-                <p>Premium Roblox Accounts for Sale</p>
-            </div>
-            <button id="settingsBtn" class="settings-btn">⚙️</button>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="admin-controls" id="adminControls">
-            <button id="addAccountBtn" class="add-btn">+ Add New Account</button>
-        </div>
-
-        <div class="filter-controls">
-            <div class="filter-section">
-                <span class="filter-label">Cats:</span>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all-status">All</button>
-                    <button class="filter-btn" data-filter="available">Available</button>
-                    <button class="filter-btn" data-filter="sold">Sold</button>
-                </div>
-            </div>
+    <!-- Login/Register Screen -->
+    <div id="authScreen" class="auth-screen">
+        <div class="auth-container">
+            <h1 class="auth-title">SD HOOD</h1>
             
-            <div class="filter-section">
-                <div class="filter-buttons">
-                    <button class="filter-btn active category-reset-btn" data-filter="all-category">🔄</button>
-                    <button class="filter-btn" data-filter="account">Account</button>
-                    <button class="filter-btn" data-filter="items">Items</button>
-                    <button class="filter-btn" data-filter="robux">Robux</button>
+            <div class="auth-tabs">
+                <button id="loginTab" class="auth-tab active">Login</button>
+                <button id="registerTab" class="auth-tab">Register</button>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p class="error-text" id="loginError"></p>
+            </form>
+
+            <form id="registerForm" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="registerName">Username</label>
+                    <input type="text" id="registerName" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+                <p class="error-text" id="registerError"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden initially) -->
+    <div id="mainApp" class="main-app hidden">
+        <header>
+            <div class="container header-content">
+                <div>
+                    <h1>SD HOOD</h1>
+                    <p>Premium Roblox Accounts for Sale</p>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <span id="userName" class="user-name"></span>
+                    <button id="logoutBtn" class="logout-btn">Logout</button>
+                    <button id="settingsBtn" class="settings-btn">⚙️</button>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <div id="accountsGrid" class="accounts-grid">
-        </div>
-    </main>
+        <main class="container app-container">
+            <div class="marketplace-section">
+                <div class="admin-controls" id="adminControls">
+                    <button id="addAccountBtn" class="add-btn">+ Add New Account</button>
+                </div>
+
+                <div class="filter-controls">
+                    <div class="filter-section">
+                        <span class="filter-label">Status:</span>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all-status">All</button>
+                            <button class="filter-btn" data-filter="available">Available</button>
+                            <button class="filter-btn" data-filter="sold">Sold</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active category-reset-btn" data-filter="all-category">🔄</button>
+                            <button class="filter-btn" data-filter="account">Account</button>
+                            <button class="filter-btn" data-filter="items">Items</button>
+                            <button class="filter-btn" data-filter="robux">Robux</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="accountsGrid" class="accounts-grid">
+                </div>
+            </div>
+
+            <div class="chat-section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>💬 Community Chat</h3>
+                    </div>
+                    <div id="chatMessages" class="chat-messages">
+                        <!-- Messages will be added here -->
+                    </div>
+                    <form id="chatForm" class="chat-form">
+                        <input type="text" id="chatInput" placeholder="Type a message..." required>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <div id="addAccountModal" class="modal">
         <div class="modal-content">
@@ -125,7 +191,7 @@
                 <button id="changePasswordBtn" class="submit-btn">Change Password</button>
             </div>
             <div class="form-group">
-                <button id="logoutBtn" class="submit-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626);">Logout</button>
+                <button id="logoutBtn2" class="submit-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626);">Logout</button>
             </div>
         </div>
     </div>
@@ -165,6 +231,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <!-- Add Firebase Realtime Database -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <!-- Add Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <!-- Add Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
     
     <script src="script.js"></script>
 </body>
