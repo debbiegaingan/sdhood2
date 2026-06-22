@@ -275,6 +275,25 @@ header p {
         top: 15px;
         right: 20px;
     }
+
+    .account-price-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .account-price {
+        font-size: 1.2rem;
+    }
+
+    .account-reactions {
+        gap: 6px;
+    }
+
+    .reaction-btn {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+    }
 }
 
 .admin-controls {
@@ -533,11 +552,18 @@ header p {
     line-height: 1.3;
 }
 
+.account-price-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
 .account-price {
     font-size: 1.4rem;
     font-weight: 800;
     color: #57f287;
-    margin-bottom: 10px;
     text-shadow: 0 0 20px rgba(87, 242, 135, 0.4);
     display: inline-block;
     background: linear-gradient(135deg, #57f287, #43d977);
@@ -574,6 +600,40 @@ header p {
 .feature-tag:hover {
     background: rgba(88, 101, 242, 0.4);
     transform: translateY(-2px);
+}
+
+.account-reactions {
+    display: flex;
+    gap: 8px;
+}
+
+.reaction-btn {
+    background: rgba(20, 20, 40, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.reaction-btn:hover {
+    transform: scale(1.05);
+    border-color: rgba(88, 101, 242, 0.5);
+    box-shadow: 0 0 10px rgba(88, 101, 242, 0.2);
+}
+
+.reaction-btn:active {
+    transform: scale(0.95);
+}
+
+.reaction-count {
+    font-weight: 600;
+    color: #e0e0e0;
+    font-size: 0.85rem;
 }
 
 .admin-buttons {

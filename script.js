@@ -70,7 +70,8 @@ function loadAccounts() {
                     category: account.category || 'account',
                     price: Number(account.price), // Make sure price is a number
                     features: account.features || [],
-                    images: account.images || []
+                    images: account.images || [],
+                    reactions: account.reactions || { heart: 0, dislike: 0 } // Add reaction defaults
                 };
             }).sort((a, b) => b.createdAt - a.createdAt); // Newest first
         } else {
@@ -79,6 +80,18 @@ function loadAccounts() {
         console.log("Accounts loaded:", accounts);
         renderAccounts();
     });
+}
+
+function addReaction(accountId, reactionType) {
+    const account = accounts.find(a => a.id === accountId);
+    if (account) {
+        // Initialize reaction count if it doesn't exist
+        if (!account.reactions) {
+            account.reactions = { heart: 0, dislike: 0 };
+        }
+        account.reactions[reactionType] = (account.reactions[reactionType] || 0) + 1;
+        saveAccounts();
+    }
 }
 
 function saveAccounts() {
@@ -197,7 +210,17 @@ function renderAccounts() {
                     <span class="feature-tag">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
                 </div>
                 <h3 class="account-title">${account.title}</h3>
-                <div class="account-price">₱${account.price.toFixed(2)}</div>
+                <div class="account-price-container">
+                    <div class="account-price">₱${account.price.toFixed(2)}</div>
+                    <div class="account-reactions">
+                        <button class="reaction-btn" onclick="addReaction(${account.id}, 'heart')">
+                            ❤️ <span class="reaction-count">${account.reactions?.heart || 0}</span>
+                        </button>
+                        <button class="reaction-btn" onclick="addReaction(${account.id}, 'dislike')">
+                            👎 <span class="reaction-count">${account.reactions?.dislike || 0}</span>
+                        </button>
+                    </div>
+                </div>
                 <p class="account-description">${account.description}</p>
                 <div class="account-features">
                     ${featuresHTML}
