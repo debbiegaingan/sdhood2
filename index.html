@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Account Marketplace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div>
+                <h1>SD HOOD</h1>
+                <p>Premium Roblox Accounts for Sale</p>
+            </div>
+            <button id="settingsBtn" class="settings-btn">⚙️</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="admin-controls" id="adminControls">
+            <button id="addAccountBtn" class="add-btn">+ Add New Account</button>
+        </div>
+
+        <div class="filter-controls">
+            <h3>Filter by Status:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all-status">All</button>
+                <button class="filter-btn" data-filter="available">Available</button>
+                <button class="filter-btn" data-filter="sold">Sold</button>
+            </div>
+            
+            <h3>Filter by Category:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all-category">All</button>
+                <button class="filter-btn" data-filter="account">Account</button>
+                <button class="filter-btn" data-filter="items">Items</button>
+                <button class="filter-btn" data-filter="robux">Robux</button>
+            </div>
+        </div>
+
+        <div id="accountsGrid" class="accounts-grid">
+        </div>
+    </main>
+
+    <div id="addAccountModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Roblox Account</h2>
+            <form id="addAccountForm">
+                <input type="hidden" id="editingAccountId">
+                <div class="form-group">
+                    <label for="accountTitle">Account Title</label>
+                    <input type="text" id="accountTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="accountPrice">Price (₱)</label>
+                    <input type="number" id="accountPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="accountStatus">Status</label>
+                    <select id="accountStatus">
+                        <option value="AVAILABLE">AVAILABLE</option>
+                        <option value="SOLD">SOLD</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="accountCategory">Category</label>
+                    <select id="accountCategory">
+                        <option value="account">Account</option>
+                        <option value="items">Items</option>
+                        <option value="robux">Robux</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="accountDescription">Description</label>
+                    <textarea id="accountDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload Images (PNG, JPG, JPEG) - Multiple allowed</label>
+                    <input type="file" id="accountImageFile" accept="image/png, image/jpeg, image/jpg" multiple>
+                    <p style="color: #b9bbbe; font-size: 0.85rem; margin-top: 5px;">Or add image URL:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <input type="url" id="accountImage" placeholder="https://..." style="flex: 1;">
+                        <button type="button" id="addUrlBtn" style="padding: 10px 20px; background: #5865f2; color: white; border: none; border-radius: 8px; cursor: pointer;">Add URL</button>
+                    </div>
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Account Features</label>
+                    <div class="features-input">
+                        <input type="text" id="featureInput" placeholder="Add a feature">
+                        <button type="button" id="addFeatureBtn">Add</button>
+                    </div>
+                    <div id="featuresList" class="features-list"></div>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Add Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🔒 Admin Login</h2>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="passwordInput">Enter Password</label>
+                    <input type="password" id="passwordInput" required placeholder="••••••••">
+                </div>
+                <p class="error-text" id="passwordError"></p>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>⚙️ Settings</h2>
+            <div class="form-group">
+                <button id="changePasswordBtn" class="submit-btn">Change Password</button>
+            </div>
+            <div class="form-group">
+                <button id="logoutBtn" class="submit-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626);">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🔑 Change Password</h2>
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" id="currentPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" required placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input type="password" id="confirmPassword" required placeholder="••••••••">
+                </div>
+                <p class="error-text" id="changePasswordError"></p>
+                <button type="submit" class="submit-btn">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-nav lightbox-prev">&#10094;</button>
+        <button class="lightbox-nav lightbox-next">&#10095;</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+        <div id="lightbox-counter" class="lightbox-counter"></div>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <!-- Add Firebase Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
