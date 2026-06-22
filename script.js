@@ -40,7 +40,7 @@ function loadAccounts() {
                     features: account.features || [],
                     images: account.images || []
                 };
-            });
+            }).sort((a, b) => b.createdAt - a.createdAt); // Newest first
         } else {
             accounts = [];
         }
