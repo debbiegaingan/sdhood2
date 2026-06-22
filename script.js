@@ -1,6 +1,6 @@
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCpkLAIDdoM-xGFqoq5c1HFFJQ2EzPrPw",
+  apiKey: "AIzaSyCpKLAIDdoM-xGFvoqq_5c1HFFJQ2EzrPw",
   authDomain: "jamesshop.firebaseapp.com",
   databaseURL: "https://jamesshop-default-rtdb.firebaseio.com",
   projectId: "jamesshop",
