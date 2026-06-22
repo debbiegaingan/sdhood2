@@ -541,4 +541,4 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 // Initialize
 updateAdminControls();
-renderAccounts();
+loadAccounts(); // Load accounts from Firebase when the page loads
