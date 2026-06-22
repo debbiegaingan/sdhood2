@@ -17,6 +17,18 @@
         </div>
     </header>
 
+    <div class="music-player">
+        <button id="playAllBtn" class="music-btn">▶️ Play Music</button>
+        <button id="pauseAllBtn" class="music-btn">⏸️ Pause</button>
+        <select id="musicSelect" class="music-select">
+            <option value="D-GARS - SPLASH GAWENS (feat. $ako).mp3">D-GARS - SPLASH GAWENS</option>
+            <option value="DYW- YEKI (Lyrics).mp3">DYW- YEKI</option>
+            <option value="Ihro G - Pipe Down Feat. Mistah Lefty.mp3">Ihro G - Pipe Down</option>
+            <option value="SINCE DAY ONE  Skusta Clee ft. Flow G.mp3">SINCE DAY ONE</option>
+        </select>
+        <input type="range" id="volumeControl" class="volume-control" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
     <main class="container">
         <div class="admin-controls" id="adminControls">
             <button id="addAccountBtn" class="add-btn">+ Add New Account</button>

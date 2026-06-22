@@ -23,6 +23,38 @@ let currentStatusFilter = 'all-status'; // 'all-status', 'available', 'sold'
 let currentCategoryFilter = 'all-category'; // 'all-category', 'account', 'items', 'robux'
 const DEFAULT_PASSWORD = 'James0917928033!';
 
+// Music player
+let currentAudio = null;
+
+function playMusic() {
+    const musicSelect = document.getElementById('musicSelect');
+    const musicFile = musicSelect.value;
+    
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+    
+    currentAudio = new Audio(musicFile);
+    currentAudio.volume = document.getElementById('volumeControl').value;
+    currentAudio.loop = true;
+    currentAudio.play().catch(err => {
+        console.log('Autoplay blocked by browser:', err);
+        alert('Click "Play Music" to start the music!');
+    });
+}
+
+function pauseMusic() {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+}
+
+function setVolume(volume) {
+    if (currentAudio) {
+        currentAudio.volume = volume;
+    }
+}
+
 // Load accounts from Firebase and set up realtime listener
 function loadAccounts() {
     console.log("Loading accounts from Firebase...");
@@ -557,6 +589,23 @@ document.addEventListener('paste', function(e) {
             }
         }
     }
+});
+
+// Music player event listeners
+document.getElementById('playAllBtn').addEventListener('click', playMusic);
+document.getElementById('pauseAllBtn').addEventListener('click', pauseMusic);
+document.getElementById('volumeControl').addEventListener('input', (e) => {
+    setVolume(e.target.value);
+});
+document.getElementById('musicSelect').addEventListener('change', () => {
+    if (currentAudio && !currentAudio.paused) {
+        playMusic();
+    }
+});
+
+// Try to autoplay on page load
+window.addEventListener('load', () => {
+    playMusic();
 });
 
 // Initialize

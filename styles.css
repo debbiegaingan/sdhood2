@@ -97,6 +97,86 @@ header p {
     box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
 }
 
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(30, 30, 50, 0.95);
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 2px solid;
+    border-image: linear-gradient(90deg, #5865f2, #a855f7, #eb459e, #ff4757, #ff6b35, #feca57, #48dbfb, #1dd1a1, #5865f2) 1;
+    animation: rainbow 3s linear infinite, float 3s ease-in-out infinite;
+    box-shadow: 0 10px 40px rgba(88, 101, 242, 0.4);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.music-btn {
+    padding: 6px 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.2), rgba(168, 85, 247, 0.2));
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(88, 101, 242, 0.5);
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.4), rgba(168, 85, 247, 0.4));
+}
+
+.music-select {
+    padding: 6px 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(20, 20, 40, 0.6);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-select:hover, .music-select:focus {
+    border-color: rgba(88, 101, 242, 0.6);
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+    outline: none;
+}
+
+.volume-control {
+    width: 80px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .music-player {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+    }
+    .volume-control {
+        width: 100%;
+    }
+}
+
 .admin-controls {
     margin-bottom: 30px;
 }
