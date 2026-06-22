@@ -539,6 +539,26 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
+// Handle image paste events
+document.addEventListener('paste', function(e) {
+    const addAccountModal = document.getElementById('addAccountModal');
+    // Only handle pastes when the add/edit modal is open
+    if (addAccountModal.style.display === 'block') {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf('image') !== -1) {
+                const blob = items[i].getAsFile();
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    tempImages.push(event.target.result);
+                    renderTempImages();
+                };
+                reader.readAsDataURL(blob);
+            }
+        }
+    }
+});
+
 // Initialize
 updateAdminControls();
 loadAccounts(); // Load accounts from Firebase when the page loads
